@@ -471,7 +471,7 @@ function Library:create(options)
 	end
 
 	options = self:set_defaults({
-		Name = "Destiny",
+		Name = "destiny",
 		Size = UDim2.fromOffset(600, 400),
 		Theme = self.Themes[settings.Theme],
 		Link = "https://discord.io/legacyx"
