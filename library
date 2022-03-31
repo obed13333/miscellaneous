@@ -311,7 +311,6 @@ function Library:object(class, properties)
 
 		methods.MouseEnter:connect(function()
 			hovered = true
-			wait(0.2)
 			if hovered then
 				tooltipContainer:tween{
 					BackgroundTransparency = 0.2,
