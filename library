@@ -988,6 +988,52 @@ function Library:create(options)
 	})
 
 	settingsTab:_theme_selector()
+	
+	settingsTab:color_picker({
+		Name = "Main",
+		Style = Library.ColorPickerStyles.Legacy,
+		Description = "Click to adjust color...",
+		Callback = function(v)
+			Library.CurrentTheme.Main = v
+			Library:change_theme(Library.CurrentTheme)
+		end,
+	})
+	settingsTab:color_picker({
+		Name = "Secondary",
+		Style = Library.ColorPickerStyles.Legacy,
+		Description = "Click to adjust color...",
+		Callback = function(v)
+			Library.CurrentTheme.Secondary = v
+			Library:change_theme(Library.CurrentTheme)
+		end,
+	})
+	settingsTab:color_picker({
+		Name = "Tertiary",
+		Style = Library.ColorPickerStyles.Legacy,
+		Description = "Click to adjust color...",
+		Callback = function(v)
+			Library.CurrentTheme.Tertiary = v
+			Library:change_theme(Library.CurrentTheme)
+		end,
+	})
+	settingsTab:color_picker({
+		Name = "Strong Text",
+		Style = Library.ColorPickerStyles.Legacy,
+		Description = "Click to adjust color...",
+		Callback = function(v)
+			Library.CurrentTheme.StrongText = v
+			Library:change_theme(Library.CurrentTheme)
+		end,
+	})
+	settingsTab:color_picker({
+		Name = "Weak Text",
+		Style = Library.ColorPickerStyles.Legacy,
+		Description = "Click to adjust color...",
+		Callback = function(v)
+			Library.CurrentTheme.WeakText = v
+			Library:change_theme(Library.CurrentTheme)
+		end,
+	})
 
 	settingsTab:toggle{
 		Name = "Lock Dragging",
