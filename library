@@ -495,7 +495,8 @@ function Library:create(options)
 
 	local gui = self:object("ScreenGui", {
 		Parent = (RunService:IsStudio() and LocalPlayer.PlayerGui) or game:GetService("CoreGui"),
-		ZIndexBehavior = Enum.ZIndexBehavior.Global
+		ZIndexBehavior = Enum.ZIndexBehavior.Global,
+		Name = "Destiny"
 	})
 
 	local notificationHolder = gui:object("Frame", {
@@ -516,7 +517,8 @@ function Library:create(options)
 			BackgroundColor3 = "Main"
 		},
 		Centered = true,
-		ClipsDescendants = true		
+		ClipsDescendants = true,
+		Name = "ContainerFrame"
 	}):round(10)
 
 	core:fade(true, nil, 0.2, true)
@@ -711,7 +713,8 @@ function Library:create(options)
 		},
 		AnchorPoint = Vector2.new(0.5, 1),
 		Position = UDim2.new(0.5, 0, 1, -20),
-		Size = UDim2.new(1, -10, 1, -86)
+		Size = UDim2.new(1, -10, 1, -86),
+		Name = "MainFrame"
 	}):round(7) -- Sept
 
 	local status = core:object("TextLabel", {
@@ -982,13 +985,13 @@ function Library:create(options)
 	}, Library)
 
 	local settingsTab = Library.tab(mt, {
-		Name = "Settings",
+		Name = "settings",
 		Internal = settingsTabIcon,
 		Icon = "rbxassetid://8559790237"
 	})
 
 	settingsTab:_theme_selector()
-	
+
 	settingsTab:color_picker({
 		Name = "Main",
 		Style = Library.ColorPickerStyles.Legacy,
@@ -1055,7 +1058,7 @@ function Library:create(options)
 	}
 
 	local creditsTab = Library.tab(mt, {
-		Name = "Credits",
+		Name = "credits",
 		Internal = creditsTabIcon,
 		Icon = "http://www.roblox.com/asset/?id=8577523456"
 	})
@@ -1286,7 +1289,8 @@ function Library:tab(options)
 		Position = UDim2.fromScale(0, 1),
 		Size = UDim2.fromScale(1, 1),
 		ScrollBarThickness = 0,
-		ScrollingDirection = Enum.ScrollingDirection.Y
+		ScrollingDirection = Enum.ScrollingDirection.Y,
+		Name = options.Name
 	})
 
 	local quickAccessButton
