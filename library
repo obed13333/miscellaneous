@@ -1,3 +1,4 @@
+-- simplification experiment
 local TweenService = game:GetService("TweenService")
 local RunService = game:GetService("RunService")
 local UserInputService = game:GetService("UserInputService")
@@ -269,7 +270,7 @@ function Library:object(class, properties)
 		return methods
 	end
 
-	function methods:tooltip(text)
+	function methods:tooltip(text, tab)
 		local tooltipContainer = methods:object("TextLabel", {
 			Theme = {
 				BackgroundColor3 = {
@@ -307,11 +308,34 @@ function Library:object(class, properties)
 			ImageTransparency = 1
 		})
 
-		local hovered = false
+		if tab ~= nil then
+			if tab == false then
+				local hovered = false
 
-		methods.MouseEnter:connect(function()
-			hovered = true
-			if hovered then
+				methods.MouseEnter:connect(function()
+					hovered = true
+					if hovered then
+						tooltipContainer:tween{
+							BackgroundTransparency = 0.2,
+							TextTransparency = 0.2
+						}
+						tooltipArrow:tween{
+							ImageTransparency = 0.2
+						}
+					end
+				end)
+
+				methods.MouseLeave:connect(function()
+					hovered = false
+					tooltipContainer:tween{
+						BackgroundTransparency = 1,
+						TextTransparency = 1
+					}
+					tooltipArrow:tween{
+						ImageTransparency = 1
+					}
+				end)
+			else
 				tooltipContainer:tween{
 					BackgroundTransparency = 0.2,
 					TextTransparency = 0.2
@@ -320,18 +344,7 @@ function Library:object(class, properties)
 					ImageTransparency = 0.2
 				}
 			end
-		end)
-
-		methods.MouseLeave:connect(function()
-			hovered = false
-			tooltipContainer:tween{
-				BackgroundTransparency = 1,
-				TextTransparency = 1
-			}
-			tooltipArrow:tween{
-				ImageTransparency = 1
-			}
-		end)
+		end
 
 		return methods
 	end
@@ -1301,7 +1314,7 @@ function Library:tab(options)
 			Theme = {
 				BackgroundColor3 = "Secondary"
 			}
-		}):round(5):tooltip(options.Name)
+		}):round(5):tooltip(options.Name, true)
 
 		quickAccessIcon = quickAccessButton:object("ImageLabel", {
 			BackgroundTransparency = 1,
@@ -4168,7 +4181,7 @@ function Library:textbox(options)
 		},
 		Size = UDim2.new(1, -20, 0, 52),
 	}):round(7)
-	
+
 	if options.Search == true then
 		textboxContainer.Name = options.Name
 	end
