@@ -1003,6 +1003,20 @@ function Library:create(options)
 	})
 
 	settingsTab:_theme_selector()
+	
+	settingsTab:button({
+		Name = "CrispyGo's Theme",
+		Callback = function()
+			Library:change_theme({
+				Main = Color3.fromRGB(0, 0, 0),
+				Secondary = Color3.fromRGB(18, 18, 18),
+				Tertiary = Color3.fromRGB(21, 21, 21),
+
+				StrongText = Color3.fromRGB(255, 255, 255),
+				WeakText = Color3.fromHSV(0, 0, 172 / 255)
+			})
+		end,
+	})
 
 	settingsTab:color_picker({
 		Name = "Main",
